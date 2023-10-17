@@ -1,0 +1,277 @@
+\documentclass[portrait,final,a0paper,fontscale=0.33]{baposter}
+
+%% read in constants, custom functions and used packages
+\input{functions/packages}
+
+\begin{document}
+
+\begin{poster}%
+	% Poster Options
+	{
+		% Show grid to help with alignment
+		grid=false,
+		% Number of columns and column spacing
+		columns=6,
+		colspacing=1em,
+		% Color style
+		bgColorOne=white,
+		borderColor=iftuccolor,
+		headerColorOne=iftucbackground,
+		headerFontColor=iftucfont,
+		boxColorOne=white,
+		% Format of textbox
+		textborder=rounded,
+		textfont=\small,
+		% Format of text header
+		eyecatcher=true,
+		headerborder=closed,
+		headerheight=0.1\textheight,
+		%  textfont=\sc, An example of changing the text font
+		headershape=rounded,
+		headershade=plain,
+		headerfont=\Large\bf, %Sans Serif
+		% textfont={\setlength{\parindent}{1.5em}},
+		boxshade=plain,
+		%  background=shade-tb,
+		background=plain,
+		linewidth=2pt
+	}
+	% University logo
+	{\includegraphics[height=6.5em]{tuckhseng_color}} 
+	% Title
+	{\bf\Large{Developing a body schema by multi-sensory\\ integration through recurrent basis functions and the contribution of the basal ganglia to motor learning}\vspace{5pt}}
+	% Authors
+	{\large Erik~Syniawa, and Fred~Hamker \\ \vspace{0.5em}
+	\small Contact: erik.syniawa@informatik.tu-chemnitz.de
+	}
+	% Department logo and other logos
+	{	
+		\begin{minipage}[r]{0.1\textwidth}
+			\includegraphics[height=7em]{active_self_logo_color}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.1\textwidth}
+			\includegraphics[height=6.5em]{TUC_AI_color}
+		\end{minipage}
+		
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% use height in headerbox to align multiple boxes 
+% height= <size in percent of column height>, else [auto]%
+\headerbox{Overview}{name=overview,column=0,row=0, span=4}{
+	
+	
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+
+	\begin{minipage}[l]{0.6\textwidth}
+		\justifying
+		\textbf{Main question:} \\		
+		How can a robot develop \textit{awareness} of its own body by associating proprioception with touch and vision using sensory consequences of motor action? \\
+		
+		\textbf{Neuro-computational model:} \\
+		Our model links \textit{sensory representations} within an integrated \textit{body schema}. Predictions and actual sensory results will be considered in the \textit{basal ganglia}. Through cortico-basal ganglia-thalamo-cortical loops the signal transmission will be modulated and dynamically influence the body schema. 
+
+	\end{minipage}
+	\hfill
+	\begin{minipage}[r]{0.4\textwidth}
+		\hspace{5pt}
+		\includegraphics[width=\linewidth]{overview_model}
+		\captionof{figure}{Schematic overview of our model}
+	\end{minipage}
+	\end{adjustbox}
+}
+
+\headerbox{\large Sensory Integration\textsuperscript{1}}{name=rbf, column=0, below=overview, span=2, height=0.302}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		\textbf{\small Recurrent Basis Functions (RBF):} \\
+		
+		\justifying
+		
+		Information from different modalities is embedded within the reference frame of their coinciding sensory system. 
+		RBF have been proposed as a model for multisensory integration between these reference frames \parencite{pougetComputationalPerspectiveNeural2002}. \\
+		Figure 2 shows an example where the position of the eyes and a joint are used to predict the position of a stimulus in retinocentric coordinates.
+	
+		\vspace{1em}
+		\begin{center}
+			\includegraphics[width=0.72\linewidth]{pop_code_figure}
+			\captionof{figure}{Schematic representation of a RBF}
+		\end{center}
+	\end{adjustbox}
+}
+
+\headerbox{\large Learning a Body Schema\textsuperscript{1}}{name=network, column=2, below=overview, span=4, height=0.302}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+	% Network definitions
+	\begin{minipage}[l]{0.30\textwidth}
+		\textbf{Rate-coded neural network:} \\
+		
+		Our network simulates neural activity in continuous time and is driven by unsupervised Anti-Hebbian learning \parencite{teichmannLearningInvarianceNatural2012}. \\
+		Excitatory neurons learn to represent the statistical features of their inputs while inhibitory interneurons decorrelate the excitatory responses leading to a sparse neural code \parencite{foldiakFormingSparseRepresentations1990}. \\
+		
+		\vspace{10pt}
+		\textbf{Neuron model:} \\
+		\footnotesize
+		$$\tau^{m} \frac{d m_{j} }{d t} + m_{j} = \sum_{j}{w_{ij} \cdot r_{i} } - \sum_{k}{c_{kj} \cdot r_{k} }$$
+		 
+		$$\tau^{\theta} \frac{d \theta_{j} }{d t} + \epsilon \cdot sign(\theta_{j}) = (r_{j} - r_{Target})$$
+		
+		$$r_{j} = \left[\alpha \left(\frac{2}{1 + e^{-\beta(m_{j}-\theta_{j})}} -1 \right) \right]^{+}$$
+
+	\end{minipage}
+	\hfill
+	% Network Architecture
+	\begin{minipage}[r]{0.3\textwidth}
+
+		\begin{center}
+			\includegraphics[width=0.8\linewidth]{net}
+			\captionof{figure}{Network Architecture}
+		\end{center}
+		
+		\vspace{22pt}
+		
+		\textbf{Synaptic Learning Rules:} \\
+		
+		\textit{Excitatory:} 
+		\footnotesize
+		$$\tau^{ w }\frac{ dw_{ ij } }{ dt } = (r_{ i }-\hat r_{ i }) \cdot r_{j}-\alpha^{w}_{j}r^{2}_{j}w_{ij}$$
+
+		$$\tau^{ \alpha }\frac{ d \alpha^{w}_{j}}{ dt } = \left( \left[ r_{j} - \gamma\right]^{+} \right)^{2} - \alpha^{w}_{j} \text{  with:  }  w_{ij} = \left[w_{ij} \right]^{+}$$
+		
+		
+	\end{minipage}
+	\hfill
+	% Network Results
+	\begin{minipage}[r]{0.33\textwidth}
+		\textit{Inhibitory}:
+		\footnotesize
+		$$\tau^{ c }\frac{ dc_{ kj } }{ dt } = r_{ k } \cdot r_{ j } -\alpha^{c}_{j}r_{j}c_{kj}
+		\text{  with:  }  c_{kj} = \left[w_{kj} \right]^{+}$$
+		
+		\vspace{15pt}
+		\small
+		\textbf{Results:} \\
+		RBF-Neurons develop gain fields that are shifting depending on the position of their reference frame. This behavior is also found in the cortex \parencite{pougetComputationalPerspectiveNeural2002}.
+		
+		\vspace{10pt}
+		
+		\begin{center}
+			\includegraphics[width=0.95\linewidth]{results_valentin}
+			\captionof{figure}{Gain Fields}
+		\end{center}
+
+		\hfill
+	\end{minipage}
+
+	\end{adjustbox}
+}
+
+\headerbox{\large References}{name=refs, column=0, above=bottom, span=6}{
+	\begin{adjustbox}{minipage=0.98\textwidth, margin=0pt, center}
+		
+		\compressbib{\printbibliography[heading=none]}
+		
+		
+	\end{adjustbox}
+	
+	
+}
+
+
+\headerbox{\Large Setup}{name=setup,column=4,row=0, span=2, above=network}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		\vspace{1pt}
+		
+		\centering
+		\includegraphics[width=0.75\linewidth]{robot_setup}
+		\captionof{figure}{Current virtual robot setup.}
+	\end{adjustbox}
+}
+
+\headerbox{\large Synaptic plasticity in the
+	Basal Ganglia\textsuperscript{2}}{name=bg, column=0, below=rbf, above=refs , span=3}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		
+	
+		\begin{minipage}[l]{0.45\textwidth}
+			\textbf{Network of the Basal Ganglia (BG):}\\
+			
+			\vspace{15pt}
+			\begin{flushright}
+				\includegraphics[width=\linewidth]{BG}
+				\captionof{figure}{Modeling of segregated \\ basal ganglia pathways}
+			\end{flushright}
+
+			
+			\vspace{25pt}
+			\justifying
+			
+			Through \textit{dopamine-modulated plasticity}, the BG enable motor category learning \parencite{segerHowBasalGanglia2008a} and are involved in establishing associations between stimulus and responses \parencite{packardLearningMemoryFunctions2002a}. They act as a kind of reinforcement learning agent. \\
+			In our model the BG consist of 3 different pathways. All of them represent actual connections between the different nuclei of the BG (see Figure 6).
+			
+			\vspace{5pt}
+			
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.55\textwidth}
+			\textbf{Learning in the different pathways:}\\
+			\justifying
+			
+			The learning principles are primarily determined by \textit{presynaptic} and \textit{postsynaptic} activity, as well as the \textit{Dopamine signal} (\textbf{DA}). Together these principles form a 3-factor learning rule (see Table 1, modified after \cite{maithOptimalAttentionTuning2021c}).
+			\vspace{1pt}
+			\begin{itemize}
+				\item \textit{High} and \textit{low} indicate whether the pre- and post-activity is more than or less than a given threshold (e.g. mean activity).
+				\item \textit{DA+} and \textit{DA-} labels indicate if the DA levels exceed a given threshold or not.
+				\item The sign \textit{+} or \textit{-} represents the weight changes in the relevant projections for each combination.
+			\end{itemize}
+			
+			
+			\input{BG_table}
+			\captionof{table}{"+"=LTP; "-"=LTD; no sign = no weight change}
+		\end{minipage}
+	\end{adjustbox}
+
+}
+
+\headerbox{\large Motor Learning in the Basal Ganglia\textsuperscript{2}}{name=motor, column=3, below=network, above=refs , span=3}{
+
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		
+		\begin{minipage}[l]{0.37\textwidth}
+			\textbf{Reaching task:} \\
+			
+			A goal should be reached in a plane (\textcolor{green}{green}). The BG should choose the right movement trajectory (\textcolor{blue}{blue}) to get from a starting arm position (\textcolor{red}{red}) to a arm position, that is able to reach the goal (\textbf{black}, see Figure 7).
+			
+			\vspace{3pt}
+			
+			\includegraphics[width=0.9\linewidth]{movement}
+			\captionof{figure}{}
+			
+			\vfill
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.65\textwidth}
+			\vspace{30pt}
+			\includegraphics[width=0.98\linewidth]{BG_Learning}
+			\captionof{figure}{}
+		\end{minipage}
+		
+		\vspace{1pt}
+			
+		\begin{minipage}[b]{\textwidth}
+			\begin{multicols}{2}
+			Figure 8 shows the development of the connection strengths in the different paths.
+			At first, unrewarded connections, respectively movements that do not lead to the goal, are suppressed by the indirect path. Through rewarded selections, a direct and hyperdirect path slowly works its way out.\\
+			The direct pathway inhibits a neuron associated with rewards in the SNr, while the hyperdirect pathway specifically excites neurons encoding alternative motor actions in the SNr. This results in the activity of only one neuron in the thalamus, that corresponds with the right movement.
+			\end{multicols}
+		\end{minipage}
+	
+	\end{adjustbox}
+
+}
+
+
+\end{poster}
+
+
+\end{document}
