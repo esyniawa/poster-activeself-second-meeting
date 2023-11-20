@@ -59,12 +59,12 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % use height in headerbox to align multiple boxes 
 % height= <size in percent of column height>, else [auto]%
-\headerbox{Overview}{name=overview,column=0,row=0, span=4}{
+\headerbox{Overview}{name=overview,column=0,row=0, span=3}{
 	
 	
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 
-	\begin{minipage}[l]{0.6\textwidth}
+	\begin{minipage}[l]{\textwidth}
 		\justifying
 		\textbf{Main question:} \\		
 		How can a robot develop \textit{awareness} of its own body by associating proprioception with touch and vision using sensory consequences of motor action? \\
@@ -73,95 +73,19 @@
 		Our model links \textit{sensory representations} within an integrated \textit{body schema}. Predictions and actual sensory results will be considered in the \textit{basal ganglia}. Through cortico-basal ganglia-thalamo-cortical loops the signal transmission will be modulated and dynamically influence the body schema. 
 
 	\end{minipage}
-	\hfill
-	\begin{minipage}[r]{0.4\textwidth}
-		\hspace{5pt}
-		\includegraphics[width=\linewidth]{overview_model}
-		\captionof{figure}{Schematic overview of our model}
-	\end{minipage}
+
 	\end{adjustbox}
 }
 
 \headerbox{\large Sensory Integration\textsuperscript{1}}{name=rbf, column=0, below=overview, span=2, height=0.302}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
-		\textbf{\small Recurrent Basis Functions (RBF):} \\
-		
-		\justifying
-		
-		Information from different modalities is embedded within the reference frame of their coinciding sensory system. 
-		RBF have been proposed as a model for multisensory integration between these reference frames \parencite{pougetComputationalPerspectiveNeural2002}. \\
-		Figure 2 shows an example where the position of the eyes and a joint are used to predict the position of a stimulus in retinocentric coordinates.
-	
-		\vspace{1em}
-		\begin{center}
-			\includegraphics[width=0.72\linewidth]{pop_code_figure}
-			\captionof{figure}{Schematic representation of a RBF}
-		\end{center}
+
 	\end{adjustbox}
 }
 
 \headerbox{\large Learning a Body Schema\textsuperscript{1}}{name=network, column=2, below=overview, span=4, height=0.302}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 	% Network definitions
-	\begin{minipage}[l]{0.30\textwidth}
-		\textbf{Rate-coded neural network:} \\
-		
-		Our network simulates neural activity in continuous time and is driven by unsupervised Anti-Hebbian learning \parencite{teichmannLearningInvarianceNatural2012}. \\
-		Excitatory neurons learn to represent the statistical features of their inputs while inhibitory interneurons decorrelate the excitatory responses leading to a sparse neural code \parencite{foldiakFormingSparseRepresentations1990}. \\
-		
-		\vspace{10pt}
-		\textbf{Neuron model:} \\
-		\footnotesize
-		$$\tau^{m} \frac{d m_{j} }{d t} + m_{j} = \sum_{j}{w_{ij} \cdot r_{i} } - \sum_{k}{c_{kj} \cdot r_{k} }$$
-		 
-		$$\tau^{\theta} \frac{d \theta_{j} }{d t} + \epsilon \cdot sign(\theta_{j}) = (r_{j} - r_{Target})$$
-		
-		$$r_{j} = \left[\alpha \left(\frac{2}{1 + e^{-\beta(m_{j}-\theta_{j})}} -1 \right) \right]^{+}$$
-
-	\end{minipage}
-	\hfill
-	% Network Architecture
-	\begin{minipage}[r]{0.3\textwidth}
-
-		\begin{center}
-			\includegraphics[width=0.8\linewidth]{net}
-			\captionof{figure}{Network Architecture}
-		\end{center}
-		
-		\vspace{22pt}
-		
-		\textbf{Synaptic Learning Rules:} \\
-		
-		\textit{Excitatory:} 
-		\footnotesize
-		$$\tau^{ w }\frac{ dw_{ ij } }{ dt } = (r_{ i }-\hat r_{ i }) \cdot r_{j}-\alpha^{w}_{j}r^{2}_{j}w_{ij}$$
-
-		$$\tau^{ \alpha }\frac{ d \alpha^{w}_{j}}{ dt } = \left( \left[ r_{j} - \gamma\right]^{+} \right)^{2} - \alpha^{w}_{j} \text{  with:  }  w_{ij} = \left[w_{ij} \right]^{+}$$
-		
-		
-	\end{minipage}
-	\hfill
-	% Network Results
-	\begin{minipage}[r]{0.33\textwidth}
-		\textit{Inhibitory}:
-		\footnotesize
-		$$\tau^{ c }\frac{ dc_{ kj } }{ dt } = r_{ k } \cdot r_{ j } -\alpha^{c}_{j}r_{j}c_{kj}
-		\text{  with:  }  c_{kj} = \left[w_{kj} \right]^{+}$$
-		
-		\vspace{15pt}
-		\small
-		\textbf{Results:} \\
-		RBF-Neurons develop gain fields that are shifting depending on the position of their reference frame. This behavior is also found in the cortex \parencite{pougetComputationalPerspectiveNeural2002}.
-		
-		\vspace{10pt}
-		
-		\begin{center}
-			\includegraphics[width=0.95\linewidth]{results_valentin}
-			\captionof{figure}{Gain Fields}
-		\end{center}
-
-		\hfill
-	\end{minipage}
 
 	\end{adjustbox}
 }
@@ -178,13 +102,19 @@
 }
 
 
-\headerbox{\Large Setup}{name=setup,column=4,row=0, span=2, above=network}{
+\headerbox{\Large Setup}{name=setup,column=3,row=0, span=3, above=network}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		\begin{minipage}[l]{0.5\textwidth}
 		\vspace{1pt}
 		
 		\centering
 		\includegraphics[width=0.75\linewidth]{robot_setup}
 		\captionof{figure}{Current virtual robot setup.}
+		\end{minipage}
+		\begin{minipage}[l]{0.5\textwidth}
+			\textbf{Task:} \\
+			Based in 2D-plane a robot should touch this right forearm. He develops the plan and visually fixates the correspondes point on this forearm. 
+		\end{minipage}
 	\end{adjustbox}
 }
 
@@ -237,35 +167,6 @@
 
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		
-		\begin{minipage}[l]{0.37\textwidth}
-			\textbf{Reaching task:} \\
-			
-			A goal should be reached in a plane (\textcolor{green}{green}). The BG should choose the right movement trajectory (\textcolor{blue}{blue}) to get from a starting arm position (\textcolor{red}{red}) to a arm position, that is able to reach the goal (\textbf{black}, see Figure 7).
-			
-			\vspace{3pt}
-			
-			\includegraphics[width=0.9\linewidth]{movement}
-			\captionof{figure}{}
-			
-			\vfill
-		\end{minipage}
-		\hfill
-		\begin{minipage}[r]{0.65\textwidth}
-			\vspace{30pt}
-			\includegraphics[width=0.98\linewidth]{BG_Learning}
-			\captionof{figure}{}
-		\end{minipage}
-		
-		\vspace{1pt}
-			
-		\begin{minipage}[b]{\textwidth}
-			\begin{multicols}{2}
-			Figure 8 shows the development of the connection strengths in the different paths.
-			At first, unrewarded connections, respectively movements that do not lead to the goal, are suppressed by the indirect path. Through rewarded selections, a direct and hyperdirect path slowly works its way out.\\
-			The direct pathway inhibits a neuron associated with rewards in the SNr, while the hyperdirect pathway specifically excites neurons encoding alternative motor actions in the SNr. This results in the activity of only one neuron in the thalamus, that corresponds with the right movement.
-			\end{multicols}
-		\end{minipage}
-	
 	\end{adjustbox}
 
 }
