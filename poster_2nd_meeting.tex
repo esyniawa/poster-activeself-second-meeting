@@ -41,7 +41,7 @@
 	% Title
 	{\bf\Large{Developing a body schema by multi-sensory\\ integration through recurrent basis functions and the contribution of the basal ganglia to motor learning}\vspace{5pt}}
 	% Authors
-	{\large Erik~Syniawa, and Fred~Hamker \\ \vspace{0.5em}
+	{\large Erik~Syniawa and Fred~Hamker \\ \vspace{0.5em}
 	\small Contact: erik.syniawa@informatik.tu-chemnitz.de
 	}
 	% Department logo and other logos
@@ -70,46 +70,23 @@
 		How can a robot develop \textit{awareness} of its own body by associating proprioception with touch and vision using sensory consequences of motor action? \\
 		
 		\textbf{Neuro-computational model:} \\
-		Our model links \textit{sensory representations} within an integrated \textit{body schema}. Predictions and actual sensory results will be considered in the \textit{basal ganglia}. Through cortico-basal ganglia-thalamo-cortical loops the signal transmission will be modulated and dynamically influence the body schema. 
+		Our model links \textit{sensory representations} within an integrated \textit{body schema}. Predictions and actual sensory results will be considered in the \textit{basal ganglia}. Through cortico-basal ganglia-thalamo (CBGT-) loops the signal transmission will be modulated and dynamically influence the body schema. 
+		
+		Through \textit{dopamine-modulated plasticity}, the BG enable motor category learning \parencite{segerHowBasalGanglia2008a} and are involved in establishing associations between stimulus and responses \parencite{packardLearningMemoryFunctions2002a}. They act as a kind of reinforcement learning agent.
 
 	\end{minipage}
 
 	\end{adjustbox}
 }
 
-\headerbox{\large Sensory Integration\textsuperscript{1}}{name=rbf, column=0, below=overview, span=2, height=0.302}{
-	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
-
-	\end{adjustbox}
-}
-
-\headerbox{\large Learning a Body Schema\textsuperscript{1}}{name=network, column=2, below=overview, span=4, height=0.302}{
-	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
-	% Network definitions
-
-	\end{adjustbox}
-}
-
-\headerbox{\large References}{name=refs, column=0, above=bottom, span=6}{
-	\begin{adjustbox}{minipage=0.98\textwidth, margin=0pt, center}
-		
-		\compressbib{\printbibliography[heading=none]}
-		
-		
-	\end{adjustbox}
-	
-	
-}
-
-
-\headerbox{\Large Setup}{name=setup,column=3,row=0, span=3, above=network}{
+\headerbox{\Large Setup}{name=setup,column=3,row=0, span=3}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		\begin{minipage}[l]{0.5\textwidth}
-		\vspace{1pt}
-		
-		\centering
-		\includegraphics[width=0.75\linewidth]{robot_setup}
-		\captionof{figure}{Current virtual robot setup.}
+			\vspace{1pt}
+			
+			\centering
+			\includegraphics[width=0.75\linewidth]{robot_setup}
+			\captionof{figure}{Current virtual robot setup.}
 		\end{minipage}
 		\begin{minipage}[l]{0.5\textwidth}
 			\textbf{Task:} \\
@@ -118,32 +95,29 @@
 	\end{adjustbox}
 }
 
-\headerbox{\large Synaptic plasticity in the
-	Basal Ganglia\textsuperscript{2}}{name=bg, column=0, below=rbf, above=refs , span=3}{
+\headerbox{\large Computational Model}{name=network, column=0, below=overview, span=3, height=0.45}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+	% Network definitions
+	\centering
+	\includegraphics[width=\linewidth]{BG_inverse_model}
+	\captionof{figure}{Overview of the whole model.}
+	
+	\justifying	
+	\begin{multicols}{2}
+	
+	\textbf{Network of the Basal Ganglia (BG):}\\
+	
+	Our model consist of 2 CBGT-Loops. The first one \ldots
+
+	
+	\end{multicols}
+	\end{adjustbox}
+}
+
+\headerbox{\large Network definitions}{name=plastic, column=3, below=setup, span=3, height=0.405}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		
-	
-		\begin{minipage}[l]{0.45\textwidth}
-			\textbf{Network of the Basal Ganglia (BG):}\\
-			
-			\vspace{15pt}
-			\begin{flushright}
-				\includegraphics[width=\linewidth]{BG}
-				\captionof{figure}{Modeling of segregated \\ basal ganglia pathways}
-			\end{flushright}
-
-			
-			\vspace{25pt}
-			\justifying
-			
-			Through \textit{dopamine-modulated plasticity}, the BG enable motor category learning \parencite{segerHowBasalGanglia2008a} and are involved in establishing associations between stimulus and responses \parencite{packardLearningMemoryFunctions2002a}. They act as a kind of reinforcement learning agent. \\
-			In our model the BG consist of 3 different pathways. All of them represent actual connections between the different nuclei of the BG (see Figure 6).
-			
-			\vspace{5pt}
-			
-		\end{minipage}
-		\hfill
-		\begin{minipage}[r]{0.55\textwidth}
+		\begin{minipage}[l]{0.5\textwidth}
 			\textbf{Learning in the different pathways:}\\
 			\justifying
 			
@@ -152,20 +126,81 @@
 			\begin{itemize}
 				\item \textit{High} and \textit{low} indicate whether the pre- and post-activity is more than or less than a given threshold (e.g. mean activity).
 				\item \textit{DA+} and \textit{DA-} labels indicate if the DA levels exceed a given threshold or not.
+			\end{itemize}
+			\vspace{10pt}
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.45\textwidth}
+			\begin{itemize}
 				\item The sign \textit{+} or \textit{-} represents the weight changes in the relevant projections for each combination.
 			\end{itemize}
+			\begin{flushright}
+				\raggedleft
+				\input{BG_table}
+				\captionof{table}{Overview 3-factor learning.}
+			\end{flushright}
+		\end{minipage}
+		\textbf{Neuron model:}\\
+		\footnotesize
+		\textit{All Populations:} 
+		$$
+		\tau \frac{d r^{post}_i }{ dt } + r^{post} = \sum_{exc}{w \cdot r^{pre}} - \sum_{inh }{w \cdot r^{pre}} + baseline + \xi \hspace{5em} \text{with:  } \xi \sim \mathcal{U}
+		$$
+
+		\textbf{Synaptic learning rule:}\\
+		$$\tau_w \frac{d w_{ij} }{ dt } = m_{DA} \cdot C_{ij} - \alpha \left(r^{post}_j - \bar{r}^{post} - \gamma^{post}\right)^2 \hspace{5em} \tau^{\alpha} \frac{d \alpha_j }{ dt } + \alpha_j = (r^{post}_j - \Theta)$$ 
+		$$
+		m_{DA} = const \cdot DA_{type} \left(r^{DA} - baseline_{DA}\right) \hspace{2em} \text{with:  } DA_{type} = \begin{cases} +1 & \text{direct pathway}  \\ -1 & \text{indirect pathway}  \end{cases}
+		$$
+		
+		\textit{Cortico-striatal:}
+		$$ C_{ij} = \left(r^{pre}_j - \bar{r}^{pre} - \gamma^{pre}\right)^+ \left(r^{post}_j - \bar{r}^{post} - \gamma^{post}\right) $$
+		\textit{Striatal-pallidal:} 
+		$$ C_{ij} = \left(r^{pre}_j - \bar{r}^{pre} - \gamma^{pre}\right)^+ \left(\bar{r}^{post} + \gamma^{post} - r^{post}_j \right) $$
+	\end{adjustbox}
+}
+
+\headerbox{\large References}{name=refs, column=0, above=bottom, span=6}{
+	\begin{adjustbox}{minipage=0.98\textwidth, margin=0pt, center}
+		
+		\compressbib{\printbibliography[heading=none]}
+
+		
+	\end{adjustbox}
+	
+	
+}
+
+
+\headerbox{\large Combining }{name=bg, column=0, below=network, above=refs , span=3}{
+	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		
+	
+		\begin{minipage}[l]{0.45\textwidth}
+
 			
+		\end{minipage}
+		\hfill
+		\begin{minipage}[r]{0.55\textwidth}
+			\begin{flushright}
+				\raggedleft
+				\includegraphics[width=\linewidth]{BG_Learning}
+				\captionof{figure}{Weight changes in the 1. BG-Loop}
+			\end{flushright}
 			
-			\input{BG_table}
-			\captionof{table}{"+"=LTP; "-"=LTD; no sign = no weight change}
 		\end{minipage}
 	\end{adjustbox}
 
 }
 
-\headerbox{\large Motor Learning in the Basal Ganglia\textsuperscript{2}}{name=motor, column=3, below=network, above=refs , span=3}{
+\headerbox{\large Motor Learning in the Basal Ganglia}{name=motor, column=3, below=plastic, above=refs , span=3}{
 
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
+		\includegraphics[width=\linewidth]{trajectories}
+		\captionof{figure}{Weight changes in the 1. BG-Loop}
+		
+		\textbf{Learning motor skills through motor babbling:}\\
+		
 		
 	\end{adjustbox}
 
