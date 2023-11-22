@@ -1,0 +1,1134 @@
+
+%  LaTeX file for generating the Model Description Table in Fig. 5 of
+%
+%  Nordlie E, Gewaltig M-O, Plesser HE (2009)
+%  Towards Reproducible Descriptions of Neuronal Network Models.
+%  PLoS Comput Biol 5(8): e1000456.
+%
+%  Paper URL : http://dx.doi.org/10.1371/journal.pcbi.1000456
+%  Figure URL: http://dx.doi.org/10.1371/journal.pcbi.1000456.g005
+%
+%  This file is released under a
+%
+%   Creative Commons Attribution, non-commercial, share-alike licence
+%   http://creativecommons.org/licenses/by-nc-sa/3.0/de/deed.en
+%
+%  with the following specifications:
+%
+%  1. When publishing tables generated from this LaTeX file and modified
+%     versions of it, you must cite the paper by Nordlie et al given above.
+%
+%  2. The non-commercial clause applies only to the distribution of THIS FILE
+%     and LaTeX source code files derived from it. You may commercially publish
+%     documents generated using this file and derivatived versions of this file.
+%
+%  Contact: Hans Ekkehard Plesser, UMB (hans.ekkehard.plesser at umb.no)
+
+\documentclass{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{colortbl}
+
+\usepackage[fleqn]{amsmath}
+\setlength{\mathindent}{0em}
+%%\usepackage{mathpazo}
+\usepackage{breqn}
+
+\usepackage[scaled=.95]{helvet}
+\renewcommand\familydefault{\sfdefault}
+
+\renewcommand\arraystretch{1.2}
+\pagestyle{empty}
+
+\newcommand{\hdr}[3]{
+    \multicolumn{#1}{|l|}{
+        \color{white}\cellcolor[gray]{0.0}
+        \textbf{\makebox[0pt]{#2}\hspace{0.5\linewidth}\makebox[0pt][c]{#3}}
+    }
+}
+
+\begin{document}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l|X|}\hline
+\hdr{2}{A}{Model Summary}\\ \hline
+\textbf{Populations}     & 19: dPFC, S1, PPTN, StrD1\_caud, StrD2\_caud, STN\_caud, GPi\_caud, GPe\_caud, VA, StrThal\_caud, SNc\_caud, PM, StrD1\_putamen, SNr, VL, M1, SNc\_put, Excitatory reward population, Inhibitory reward population \\ \hline
+\textbf{Topology}        & --- \\ \hline
+\textbf{Connectivity}    & Connectivity matrix, One-to-One, Pooling, All-to-All \\ \hline
+\textbf{Neuron models}   & Rate-coded neuron, Baseline Neuron \\ \hline
+\textbf{Channel models}  & --- \\ \hline
+\textbf{Synapse models}  & --- \\ \hline
+\textbf{Plasticity}      & Reversed Synapse, Pooling operation\\ \hline
+\textbf{Input}           & --- \\ \hline
+\textbf{Measurements}    & --- \\ \hline
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l|l|X|}\hline
+\hdr{3}{B}{Populations}\\ \hline
+    \textbf{Name}   & \textbf{Elements} & \textbf{Size} \\ \hline
+
+    dPFC             & Baseline Neuron        & $N_{\text{dPFC}}$ = 1  \\ \hline
+
+    S1             & Baseline Neuron        & $N_{\text{S1}}$ = 5  \\ \hline
+
+    PPTN             & Baseline Neuron        & $N_{\text{PPTN}}$ = 1  \\ \hline
+
+    StrD1\_caud             & Neuron 3        & $N_{\text{StrD1\_caud}}$ = 25 (5*5)  \\ \hline
+
+    StrD2\_caud             & Neuron 3        & $N_{\text{StrD2\_caud}}$ = 25 (5*5)  \\ \hline
+
+    STN\_caud             & Neuron 3        & $N_{\text{STN\_caud}}$ = 5  \\ \hline
+
+    GPi\_caud             & Neuron 2        & $N_{\text{GPi\_caud}}$ = 30 (5*6)  \\ \hline
+
+    GPe\_caud             & Neuron 2        & $N_{\text{GPe\_caud}}$ = 30 (5*6)  \\ \hline
+
+    VA             & Neuron 2        & $N_{\text{VA}}$ = 30 (5*6)  \\ \hline
+
+    StrThal\_caud             & Neuron 2        & $N_{\text{StrThal\_caud}}$ = 6  \\ \hline
+
+    SNc\_caud             & Neuron 4        & $N_{\text{SNc\_caud}}$ = 1  \\ \hline
+
+    PM             & Neuron 2        & $N_{\text{PM}}$ = 604005 (5*201*601)  \\ \hline
+
+    StrD1\_putamen             & Neuron 2        & $N_{\text{StrD1\_putamen}}$ = 80 (5*16)  \\ \hline
+
+    SNr             & Neuron 2        & $N_{\text{SNr}}$ = 80 (5*16)  \\ \hline
+
+    VL             & Neuron 2        & $N_{\text{VL}}$ = 80 (5*16)  \\ \hline
+
+    M1             & Neuron 2        & $N_{\text{M1}}$ = 80 (5*16)  \\ \hline
+
+    SNc\_put             & Neuron 4        & $N_{\text{SNc\_put}}$ = 1  \\ \hline
+
+    Excitatory reward population             & Neuron 2        & $N_{\text{Excitatory reward population}}$ = 1  \\ \hline
+
+    Inhibitory reward population             & Neuron 2        & $N_{\text{Inhibitory reward population}}$ = 1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|l|l|l|X|X|}\hline
+\hdr{5}{C}{Connectivity}\\ \hline
+\textbf{Source} & \textbf{Destination} & \textbf{Target} & \textbf{Synapse} & \textbf{Pattern} \\ \hline
+
+    dPFC & StrD1\_caud & exc & Synapse 2 &
+    All-to-All, weights $\mathcal{N}$(0.5, 0.2), delays 0.0 \\ \hline
+
+    StrD1\_caud & GPi\_caud & inh & Synapse 3 &
+    All-to-All, weights $\mathcal{N}$(0.5, 0.1), delays 0.0 \\ \hline
+
+    dPFC & StrD2\_caud & exc & Synapse 2 &
+    All-to-All, weights $\mathcal{N}$(0.4, 0.2), delays 0.0 \\ \hline
+
+    StrD2\_caud & GPe\_caud & inh & Synapse 3 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    GPe\_caud & GPi\_caud & inh & - &
+    One-to-One, weights 1.0, delays 0.0 \\ \hline
+
+    S1 & STN\_caud & exc & - &
+    Connectivity matrix \\ \hline
+
+    STN\_caud & GPi\_caud & exc & - &
+    Connectivity matrix \\ \hline
+
+    GPi\_caud & VA & inh & - &
+    One-to-One, weights 0.8, delays 0.0 \\ \hline
+
+    PPTN & SNc\_caud & exc & - &
+    One-to-One, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_caud & StrD1\_caud & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_caud & GPi\_caud & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_caud & StrD2\_caud & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_caud & GPe\_caud & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_caud & STN\_caud & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    StrD1\_caud & SNc\_caud & inh & Synapse 4 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    VA & StrThal\_caud & exc & Pooling operation &
+    Pooling \\ \hline
+
+    StrThal\_caud & GPi\_caud & inh & - &
+    Connectivity matrix \\ \hline
+
+    StrThal\_caud & GPe\_caud & inh & - &
+    Connectivity matrix \\ \hline
+
+    StrD2\_caud & StrD2\_caud & inh & - &
+    All-to-All, weights 0.1, delays 0.0 \\ \hline
+
+    StrD1\_caud & StrD1\_caud & inh & - &
+    All-to-All, weights 0.4, delays 0.0 \\ \hline
+
+    StrThal\_caud & StrThal\_caud & inh & - &
+    All-to-All, weights 0.2, delays 0.0 \\ \hline
+
+    VA & VA & inh & - &
+    All-to-All, weights 0.4, delays 0.0 \\ \hline
+
+    GPi\_caud & GPi\_caud & exc & Reversed Synapse &
+    Connectivity matrix \\ \hline
+
+    GPe\_caud & GPe\_caud & inh & - &
+    Connectivity matrix \\ \hline
+
+    SNr & SNr & exc & Reversed Synapse &
+    Connectivity matrix \\ \hline
+
+    VL & VL & inh & - &
+    Connectivity matrix \\ \hline
+
+    PM & StrD1\_putamen & exc & Synapse 2 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    PM & StrD1\_putamen & exc & Synapse 2 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    PM & StrD1\_putamen & exc & Synapse 2 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    PM & StrD1\_putamen & exc & Synapse 2 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    PM & StrD1\_putamen & exc & Synapse 2 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    StrD1\_putamen & SNr & inh & - &
+    One-to-One, weights 0.8, delays 0.0 \\ \hline
+
+    SNr & VL & inh & - &
+    One-to-One, weights 0.6, delays 0.0 \\ \hline
+
+    VL & M1 & exc & - &
+    One-to-One, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_put & StrD1\_putamen & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    SNc\_put & SNr & dopa & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    Excitatory reward population & SNc\_put & exc & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    Inhibitory reward population & SNc\_put & inh & - &
+    All-to-All, weights 1.0, delays 0.0 \\ \hline
+
+    StrD1\_putamen & SNc\_put & inh & Synapse 4 &
+    All-to-All, weights 0.0, delays 0.0 \\ \hline
+
+    M1 & StrD1\_putamen & exc & - &
+    One-to-One, weights 0.5, delays 0.0 \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+\hdr{2}{D}{Neuron Models}\\ \hline
+\textbf{Name} & Baseline Neuron \\ \hline
+\textbf{Type} & Neuron with baseline to be set. \\ \hline
+\textbf{Equations} &
+
+
+\begin{dmath*}
+{{\text{base}}}(t) = {\text{baseline}} + {\text{noise}} \cdot \mathcal{U}{\left(-1.0,1.0 \right)}
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{r}(t)}{dt} = \begin{cases}\frac{- {r}(t) + {{\text{base}}}(t)}{\tau_{\text{up}}}\qquad \text{if} \quad {\text{baseline}} > 0.01\\ - \frac{{r}(t)}{\tau_{\text{down}}} \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Neuron 2 \\ \hline
+\textbf{Type} & User-defined model of a rate-coded neuron.\\ \hline
+\textbf{Equations} &
+
+
+\begin{dmath*}
+\frac{d{{\text{mp}}}(t)}{dt} \cdot \tau + {{\text{mp}}}(t) = \sum_{\text{exc}} w \cdot r^{\text{pre}}(t-d) - \sum_{\text{inh}} w \cdot r^{\text{pre}}(t-d) + {\text{baseline}} + {\text{noise}} \cdot \mathcal{U}{\left(-1.0,1.0 \right)}
+\end{dmath*}
+
+\begin{dmath*}
+{r}(t) = {\text{lesion}} \cdot \left({{\text{mp}}}(t)\right)^+
+\end{dmath*}
+
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Neuron 3 \\ \hline
+\textbf{Type} & User-defined model of a rate-coded neuron.\\ \hline
+\textbf{Equations} &
+
+
+\begin{dmath*}
+\frac{d{{\text{mp}}}(t)}{dt} \cdot \tau + {{\text{mp}}}(t) = \sum_{\text{exc}} w \cdot r^{\text{pre}}(t-d) - \sum_{\text{inh}} w \cdot r^{\text{pre}}(t-d) + {\text{baseline}} + {\text{noise}} \cdot \mathcal{U}{\left(-1.0,1.0 \right)}
+\end{dmath*}
+
+\begin{dmath*}
+{r}(t) = {\text{lesion}} \cdot \left({{\text{mp}}}(t)\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{{\text{trace}}}(t)}{dt} \cdot \tau_{\text{trace}} + {{\text{trace}}}(t) = {r}(t)
+\end{dmath*}
+
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Neuron 4 \\ \hline
+\textbf{Type} & User-defined model of a rate-coded neuron.\\ \hline
+\textbf{Equations} &
+
+
+\begin{dmath*}
+{{\text{ex}}_{\text{in}}}(t) = \begin{cases}1\qquad \text{if} \quad \sum_{\text{exc}} w \cdot r^{\text{pre}}(t-d) > {\text{exc}}_{\text{threshold}}\\ 0 \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{s_{\text{inh}}}(t) = \sum_{\text{inh}} w \cdot r^{\text{pre}}(t-d)
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{aux}}}(t) = \begin{cases}- \sum_{\text{inh}} w \cdot r^{\text{pre}}(t-d) \cdot {\text{factor}}_{\text{inh}} \cdot \left(1 - {{\text{ex}}_{\text{in}}}(t)\right) + {{\text{ex}}_{\text{in}}}(t) \cdot \left({\text{baseline}} + \left(- {\text{baseline}} - {s_{\text{inh}}}(t) + 1.0\right)^+\right)\qquad \text{if} \quad {\text{firing}} > 0\\ {\text{baseline}} \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{{\text{mp}}}(t)}{dt} \cdot \tau + {{\text{mp}}}(t) = {{\text{aux}}}(t)
+\end{dmath*}
+
+\begin{dmath*}
+{r}(t) = \begin{cases}{{\text{mp}}}(t)\qquad \text{if} \quad {{\text{mp}}}(t) > 0.0\\ 0.0 \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+\hdr{2}{E}{Synapse Models}\\ \hline
+\textbf{Name} & Reversed Synapse \\ \hline
+\textbf{Type} & Higher pre-synaptic activity lowers the synaptic transmission and vice versa.\\ \hline
+
+\textbf{PSP} & \begin{dmath*}
+w(t) \cdot \left({\text{reversal}} - {r^{\text{pre}}}(t-d)\right)^+
+\end{dmath*}
+\\ \hline
+
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Synapse 2 \\ \hline
+\textbf{Type} & User-defined rate-coded synapse.\\ \hline
+
+\textbf{PSP} & \begin{dmath*}
+w(t) \cdot r^{\text{pre}}(t)
+\end{dmath*}
+\\ \hline
+
+\textbf{Equations} & 
+\begin{dmath*}
+\frac{d{\alpha}(t)}{dt} \cdot \tau_\alpha + {\alpha}(t) = \left(- {\text{regularization}}_{\text{threshold}} + {{{\text{mp}}}^{\text{post}}}(t)\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{dopa}}_{\text{sum}}}(t) = 2.0 \cdot (\sum_{\text{dopa}} \text{psp}(t))^{\text{post}} - 2.0 \cdot {\text{baseline}}_{\text{dopa}}
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{trace}}}(t) = \left(- {\text{threshold}}_{\text{pre}} + {r^{\text{pre}}}(t-d) - \operatorname{mean}{\left({r^{\text{pre}}}(t-d) \right)}\right) \cdot \left(- {\text{threshold}}_{\text{post}} + {{r}^{\text{post}}}(t) - \operatorname{mean}{\left({{r}^{\text{post}}}(t) \right)}\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{condition}}_0}(t) = \begin{cases}1\qquad \text{if} \quad {w}(t) > 0.0 \wedge {{\text{trace}}}(t) > 0.0\\ 0 \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{dopa}}_{\text{mod}}}(t) = \begin{cases}K_{\text{burst}} \cdot {\text{DA}}_{\text{type}} \cdot {{\text{dopa}}_{\text{sum}}}(t)\qquad \text{if} \quad {\text{DA}}_{\text{type}} \cdot {{\text{dopa}}_{\text{sum}}}(t) > 0\\ K_{\text{dip}} \cdot {\text{DA}}_{\text{type}} \cdot {{\text{condition}}_0}(t) \cdot {{\text{dopa}}_{\text{sum}}}(t) \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{\delta}(t) = - {\alpha}(t) \cdot \left(- {\text{threshold}}_{\text{post}} + {{r}^{\text{post}}}(t) - \operatorname{mean}{\left({{r}^{\text{post}}}(t) \right)}\right)^+ + {{\text{dopa}}_{\text{mod}}}(t) \cdot {{\text{trace}}}(t)
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{w}(t)}{dt} \cdot \tau = {\delta}(t)
+\end{dmath*}
+  
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Synapse 3 \\ \hline
+\textbf{Type} & User-defined rate-coded synapse.\\ \hline
+
+\textbf{PSP} & \begin{dmath*}
+w(t) \cdot r^{\text{pre}}(t)
+\end{dmath*}
+\\ \hline
+
+\textbf{Equations} & 
+\begin{dmath*}
+\frac{d{\alpha}(t)}{dt} \cdot \tau_\alpha = - {\alpha}(t) + \left(- {\text{regularization}}_{\text{threshold}} - {{{\text{mp}}}^{\text{post}}}(t)\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{dopa}}_{\text{sum}}}(t) = 2.0 \cdot (\sum_{\text{dopa}} \text{psp}(t))^{\text{post}} - 2.0 \cdot {\text{baseline}}_{\text{dopa}}
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{trace}}}(t) = \left(- {\text{threshold}}_{\text{post}} - {{r}^{\text{post}}}(t) + \operatorname{mean}{\left({{r}^{\text{post}}}(t) \right)}\right) \cdot \left(- {\text{threshold}}_{\text{pre}} + {r^{\text{pre}}}(t-d) - \operatorname{mean}{\left({r^{\text{pre}}}(t-d) \right)}\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{aux}}}(t) = \begin{cases}{\text{negterm}}\qquad \text{if} \quad {{\text{trace}}}(t) > 0\\ 0 \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{{\text{dopa}}_{\text{mod}}}(t) = \begin{cases}K_{\text{burst}} \cdot {\text{DA}}_{\text{type}} \cdot {{\text{dopa}}_{\text{sum}}}(t)\qquad \text{if} \quad {\text{DA}}_{\text{type}} \cdot {{\text{dopa}}_{\text{sum}}}(t) > 0\\ K_{\text{dip}} \cdot {\text{DA}}_{\text{type}} \cdot {{\text{aux}}}(t) \cdot {{\text{dopa}}_{\text{sum}}}(t) \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{\delta}(t) = - {\alpha}(t) \cdot \left({{\text{trace}}}(t)\right)^+ + {{\text{dopa}}_{\text{mod}}}(t) \cdot {{\text{trace}}}(t)
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{w}(t)}{dt} \cdot \tau = {\delta}(t)
+\end{dmath*}
+  
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Synapse 4 \\ \hline
+\textbf{Type} & User-defined rate-coded synapse.\\ \hline
+
+\textbf{PSP} & \begin{dmath*}
+w(t) \cdot r^{\text{pre}}(t)
+\end{dmath*}
+\\ \hline
+
+\textbf{Equations} & 
+\begin{dmath*}
+{{\text{aux}}}(t) = \begin{cases}1.0\qquad \text{if} \quad (\sum_{\text{exc}} \text{psp}(t))^{\text{post}} > 0\\ 3.0 \qquad \text{otherwise.} \end{cases}
+\end{dmath*}
+
+\begin{dmath*}
+{\delta}(t) = {{\text{aux}}}(t) \cdot \left(- {\text{baseline}}_{\text{dopa}} + {{r}^{\text{post}}}(t)\right)^+ \cdot \left({r^{\text{pre}}}(t-d) - \operatorname{mean}{\left({r^{\text{pre}}}(t-d) \right)}\right)^+
+\end{dmath*}
+
+\begin{dmath*}
+\frac{d{w}(t)}{dt} \cdot \tau = {\delta}(t)
+\end{dmath*}
+  
+\\ \hline
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.15\linewidth}|X|}\hline
+
+\textbf{Name} & Pooling operation \\ \hline
+\textbf{Type} & max-pooling operation over the pre-synaptic population.\\ \hline
+
+\textbf{PSP} & \begin{dmath*}
+{r^{\text{pre}}}(t-d)
+\end{dmath*}
+\\ \hline
+
+
+
+
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|X|}\hline
+\hdr{1}{F}{Parameters}\\ \hline
+\\ \hline
+\end{tabularx}
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    dPFC             & $\tau_{\text{up}}$        & 1.0  \\ \hline
+
+                 & $\tau_{\text{down}}$        & 20.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    S1             & $\tau_{\text{up}}$        & 1.0  \\ \hline
+
+                 & $\tau_{\text{down}}$        & 20.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PPTN             & $\tau_{\text{up}}$        & 1.0  \\ \hline
+
+                 & $\tau_{\text{down}}$        & 20.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD1\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & $\tau_{\text{trace}}$        & 120.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD2\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & $\tau_{\text{trace}}$        & 120.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    STN\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & $\tau_{\text{trace}}$        & 120.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    GPi\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 1.9  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    GPe\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 1.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.05  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    VA             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 1.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.025  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrThal\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.4  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    SNc\_caud             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{firing}}$        & 0.0  \\ \hline
+
+                 & ${\text{inhibition}}$        & 0.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.1  \\ \hline
+
+                 & ${\text{exc}}_{\text{threshold}}$        & 0.2  \\ \hline
+
+                 & ${\text{factor}}_{\text{inh}}$        & 10.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD1\_putamen             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    SNr             & $\tau$        & 5.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 1.1  \\ \hline
+
+                 & ${\text{noise}}$        & 0.05  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    VL             & $\tau$        & 8.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.9  \\ \hline
+
+                 & ${\text{noise}}$        & 0.05  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    M1             & $\tau$        & 20.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.01  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    SNc\_put             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{firing}}$        & 0.0  \\ \hline
+
+                 & ${\text{inhibition}}$        & 0.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{exc}}_{\text{threshold}}$        & 0.0  \\ \hline
+
+                 & ${\text{factor}}_{\text{inh}}$        & 10.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    Excitatory reward population             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Population} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    Inhibitory reward population             & $\tau$        & 10.0  \\ \hline
+
+                 & ${\text{baseline}}$        & 0.0  \\ \hline
+
+                 & ${\text{noise}}$        & 0.0  \\ \hline
+
+                 & ${\text{lesion}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    dPFC  $\rightarrow$ StrD1\_caud with target exc & $\tau$        & 100.0  \\ \hline
+
+     & $\tau_\alpha$        & 10.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.0  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.5  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.0  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.2  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD1\_caud  $\rightarrow$ GPi\_caud with target inh & $\tau$        & 500.0  \\ \hline
+
+     & $\tau_\alpha$        & 5.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.25  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.0  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.9  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.0  \\ \hline
+
+     & ${\text{negterm}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    dPFC  $\rightarrow$ StrD2\_caud with target exc & $\tau$        & 50.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 1.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 2.0  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.2  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & -1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.0  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD2\_caud  $\rightarrow$ GPe\_caud with target inh & $\tau$        & 50.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 1.5  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 2.0  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.2  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & -1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.0  \\ \hline
+
+     & ${\text{negterm}}$        & 1.0  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD1\_caud  $\rightarrow$ SNc\_caud with target inh & $\tau$        & 3000  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    GPi\_caud  $\rightarrow$ GPi\_caud with target exc & ${\text{reversal}}$        & 0.4  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    SNr  $\rightarrow$ SNr with target exc & ${\text{reversal}}$        & 1.2  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM  $\rightarrow$ StrD1\_putamen with target exc & $\tau$        & 200.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.2  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.1  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM  $\rightarrow$ StrD1\_putamen with target exc & $\tau$        & 200.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.2  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.1  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM  $\rightarrow$ StrD1\_putamen with target exc & $\tau$        & 200.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.2  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.1  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM  $\rightarrow$ StrD1\_putamen with target exc & $\tau$        & 200.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.2  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.1  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    PM  $\rightarrow$ StrD1\_putamen with target exc & $\tau$        & 200.0  \\ \hline
+
+     & $\tau_\alpha$        & 20.0  \\ \hline
+
+     & ${\text{regularization}}_{\text{threshold}}$        & 2.0  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+     & $K_{\text{burst}}$        & 1.2  \\ \hline
+
+     & $K_{\text{dip}}$        & 0.1  \\ \hline
+
+     & ${\text{DA}}_{\text{type}}$        & 1  \\ \hline
+
+     & ${\text{threshold}}_{\text{pre}}$        & 0.1  \\ \hline
+
+     & ${\text{threshold}}_{\text{post}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent
+\begin{tabularx}{\linewidth}{|p{0.25\linewidth}|p{0.25\linewidth}|X|}\hline
+\textbf{Projection} & \textbf{Parameter} & \textbf{Value}   \\ \hline
+
+    StrD1\_putamen  $\rightarrow$ SNc\_put with target inh & $\tau$        & 10000  \\ \hline
+
+     & ${\text{baseline}}_{\text{dopa}}$        & 0.1  \\ \hline
+
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent\begin{tabularx}{\linewidth}{|l|X|}\hline
+\hdr{2}{G}{Input}\\ \hline
+\textbf{Type} & \textbf{Description} \\ \hline
+---
+\\ \hline
+\end{tabularx}
+
+\vspace{2ex}
+
+\noindent\begin{tabularx}{\linewidth}{|X|}\hline
+\hdr{1}{H}{Measurements}\\ \hline
+---
+\\ \hline
+\end{tabularx}
+
+\end{document}
