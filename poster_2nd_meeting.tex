@@ -1,4 +1,4 @@
-\documentclass[portrait,final,a0paper,fontscale=0.33]{baposter}
+\documentclass[portrait,final,a0paper,fontscale=0.36]{baposter}
 
 %% read in constants, custom functions and used packages
 \input{functions/packages}
@@ -6,9 +6,10 @@
 \definecolor{loop1}{HTML}{67AB9F}
 \definecolor{loop2}{HTML}{FFB570}
 
-
 \definecolor{direct}{HTML}{6C8EBF}
 \definecolor{indirect}{HTML}{B85450}
+
+\setlength\bibitemsep{0.8\itemsep}
 
 \begin{document}
 
@@ -67,24 +68,25 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % use height in headerbox to align multiple boxes 
 % height= <size in percent of column height>, else [auto]%
-\headerbox{\large Overview}{name=overview,column=0,row=0, span=3}{
+\headerbox{\large Overview}{name=overview,column=0,row=0, span=3, height=0.135}{
 	
 	
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
-
-	\begin{minipage}[l]{\textwidth}
-		\justifying
-		\textbf{Main question:} \\
-		
-		\textbf{Basal Ganglia (BG):} \\
-		Through \textit{dopamine-modulated plasticity}, the BG enable motor category learning \parencite{segerHowBasalGanglia2008a} and are involved in establishing associations between stimulus and responses \parencite{packardLearningMemoryFunctions2002a}. They act as a kind of reinforcement learning agent.
-
-	\end{minipage}
-
+		\begin{minipage}[l]{0.35\textwidth}
+			\centering
+			\includegraphics[width=0.7\linewidth]{BG_3D_screenshot}
+			\captionof{figure}{3D Reconstruction \\of the BG \parencite{BG}.}
+		\end{minipage}
+		\begin{minipage}[l]{0.65\textwidth}
+			\justifying
+			The \textit{basal ganglia} (BG), a collection of subcortical nuclei, intricately govern motor control, learning, executive functions, and emotional behaviors. \\ 
+			Through \textit{dopamine-modulated plasticity}, the BG dynamically modulate cortical input, crucial for the acquisition and execution of a diverse array of movements \parencite{parkBasalGangliaCircuits2020, dudmanBasalGangliaMotor2016}.\\ 
+			Here we introduce a novel perspective on how the basal ganglia could integrate various body positions and enable the learning of motor skills.
+		\end{minipage}
 	\end{adjustbox}
 }
 
-\headerbox{\large Setup}{name=setup,column=3,row=0, span=3}{
+\headerbox{\large Setup}{name=setup,column=3,row=0, span=3, height=0.135}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		\begin{minipage}[l]{0.5\textwidth}
 			\vspace{1pt}
@@ -94,58 +96,63 @@
 			\captionof{figure}{Current virtual robot setup.}
 		\end{minipage}
 		\begin{minipage}[l]{0.5\textwidth}
+			\justifying
 			\textbf{Task:} \\
-			Based in 2D-plane a robot should touch this left forearm. He visually fixates the correspond point on this forearm (\textcolor{red}{red}). \\
+			Based in 2D-plane a robot should touch this left forearm. He visually fixates the corresponding point on this forearm (\textcolor{red}{red point} in figure 2). \\
 			The robot fixates the point it intends to touch visually. This point serves as a prediction to choose the right action from an arbitrary initial body position.
 		\end{minipage}
 	\end{adjustbox}
 }
 
-\headerbox{\large Computational Model}{name=network, column=0, below=overview, span=3, height=0.54}{
+\headerbox{\large Computational model}{name=network, column=0, below=overview, span=3, height=0.53}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 	% Network definitions
 	\centering
 	\includegraphics[width=\linewidth]{BG_inverse_model}
 	\captionof{figure}{Overview of the whole model.}
-	
+	\vspace{5pt}
 	\justifying	
 	\begin{multicols}{2}
+	Our model consist of 2 cortico-basal ganglia-thalamocortical (CBGT-) Loops (see figure 3).
+	\\
+	The \textcolor{loop1}{1st Loop} combines a visual goal in relation with the arm position and the  \textcolor{loop2}{2nd loop} learns an action, that is able to reach this resulting goal \parencite{baladronContributionBasalGanglia2023b}. \\
 	
-	\textbf{Network of the BG:}\\
+	The model is implemented in Python 3.11 and uses the neurosimulator ANNarchy 4.7.2.6 \parencite{vitayANNarchyCodeGeneration2015}.\\
 	
-	Our model consist of 2 CBGT-Loops (see figure 2). The \textcolor{loop1}{1st Loop} combines a visual goal in relation with the arm position and the  \textcolor{loop2}{2nd loop} learns an action, that is able to reach this resulting goal \parencite{baladronContributionBasalGanglia2023}. \\
-	The model is implemented in Python 3.11 and uses the Package ANNarchy 4.7.2.6 \parencite{vitayANNarchyCodeGeneration2015} to simulate the population dynamics.\\
-	
-	\textit{Primary Somatosensory Cortex:}
-	\begin{itemize}[itemsep=0pt]
-		\item Inputs the initial arm positions (in this example 5).
-		\item Neurons in the STN are excited based on the distance (\textcolor{red}{red}) between the end effectors of the left arm. 
+	\textit{PFC:}
+	\begin{itemize}[itemsep=0pt, topsep=0pt]
+		\item Encodes a dimensionless intention for movement
+		\item The number of neurons amount to the number of representations to be learnt
 	\end{itemize}
-	
+	\textit{Primary Somatosensory Cortex (S1):}
+	\begin{itemize}[itemsep=0pt, topsep=0pt]
+		\item Encodes all possible arm positions (in this example 5)
+		\item Only one position can be active (see figure 3 bold \textcolor{green}{green})
+		\item Arm positions with nearby end effectors are also excited in the STN (in figure 3 the distance is shown in \textcolor{red}{red}) 
+	\end{itemize}
 	\textit{STN:}
-	\begin{itemize}[itemsep=0pt]
+	\begin{itemize}[itemsep=0pt, topsep=0pt]
 		\item Neurons in the STN excite Neurons in the GPi, that do not correspond with active representations in the STN
 	\end{itemize}
-	
 	\textit{Premotor Area:}
-	\begin{itemize}[itemsep=0pt]
+	\begin{itemize}[itemsep=0pt, topsep=0pt]
 		\item Here, the visual goal is linked with the most active tactile neuron stimulated by VA
-		\item If the positions corresponds a Dopamine Signal (DA) is send to the \textcolor{loop1}{1st Loop}
+		\item If the positions align, a DA Signal is send to the \textcolor{loop1}{1st CBGT-Loop}
 	\end{itemize}
 	\textit{M1:}
-	\begin{itemize}[itemsep=0pt]
+	\begin{itemize}[itemsep=0pt, topsep=0pt]
 		\item After one neuron exceeds a threshold a movement is executed
-		\item If the executed hand position and the visual goal align a DA-Signal is send to the \textcolor{loop2}{2nd Loop}
+		\item If the executed hand position and the visual goal align a DA Signal is send to the \textcolor{loop2}{2nd CBGT-Loop}
 	\end{itemize}
 	
 	\end{multicols}
 	\end{adjustbox}
 }
 
-\headerbox{\large Model definitions}{name=plastic, column=3, below=setup, span=3, height=0.41}{
+\headerbox{\large Model definitions}{name=plastic, column=3, below=setup, span=3, height=0.395}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		
-		\begin{minipage}[l]{0.5\textwidth}
+		\begin{minipage}[l]{0.47\textwidth}
 			\textbf{Learning in the different pathways:}\\
 			\justifying
 			
@@ -158,7 +165,7 @@
 			\vspace{5pt}
 		\end{minipage}
 		\hfill
-		\begin{minipage}[r]{0.45\textwidth}
+		\begin{minipage}[r]{0.5\textwidth}
 			\begin{itemize}
 				\item The sign \textit{+} or \textit{-} represents the weight changes in the relevant projections for each combination.
 			\end{itemize}
@@ -173,15 +180,15 @@
 		\footnotesize
 		\textit{All Populations:} 
 		$$
-		\tau \frac{d r^{post}_i }{ dt } + r^{post} = \sum_{exc}{w \cdot r^{pre}} - \sum_{inh}{w \cdot r^{pre}} - \sum_{lat}{w \cdot r^{post}} + baseline + \xi \hspace{2em} \text{with:  } \xi \sim \mathcal{U}
+		\tau \frac{d r^{post}_j }{ dt } + r^{post}_j = \sum_{i \in exc}{w_{ij} \cdot r^{pre}_i} - \sum_{i \in inh}{w_{ij} \cdot r^{pre}_i} - \sum_{k \in lat}{w \cdot r^{post}_k} + baseline + \xi \hspace{2em} \text{with:  } \xi \sim \mathcal{U}
 		$$
 
 		\textbf{\small Synaptic learning rule:}\\
 		$$\tau_w \frac{d w_{ij} }{ dt } = m_{DA} \cdot C_{ij} - \alpha \left(r^{post}_j - \bar{r}^{post} - \gamma^{post}\right)^2 \hspace{5em} \tau_{\alpha} \frac{d \alpha_j }{ dt } + \alpha_j = (r^{post}_j - \Theta)$$ 
+		\vspace{4pt}
 		$$
 		m_{DA} = const \cdot DA_{type} \left(r^{DA} - baseline_{DA}\right) \hspace{2em} \text{with:  } DA_{type} = \begin{cases} +1 & \text{\textcolor{direct}{direct pathway}}  \\ -1 & \text{\textcolor{indirect}{indirect pathway}}  \end{cases}
 		$$
-		
 		\textit{Cortico-striatal} (Cortex $\rightarrow$ D1 and Cortex $\rightarrow$ D2)
 		$$ C_{ij} = \left(r^{pre}_j - \bar{r}^{pre} - \gamma^{pre}\right)^+ \left(r^{post}_j - \bar{r}^{post} - \gamma^{post}\right) $$
 		\textit{Striatal-pallidal} (D1 $\rightarrow$ GPi and D2 $\rightarrow$ GPe)
@@ -201,15 +208,14 @@
 }
 
 
-\headerbox{\large Combining a Goal with the Arm Position}{name=bg, column=0, below=network, above=refs , span=3}{
+\headerbox{\large Integration of the goal}{name=bg, column=0, below=network, above=refs , span=3}{
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 		
 	
-		\begin{minipage}[l]{0.4\textwidth}
-			\textbf{Learning in the 1st Loop:}
-			\begin{itemize}[itemsep=0pt]
-			
-				\item In the first trials, tactile stimuli that do not match the visual target are suppressed (see Figure 3 indirect path)
+		\begin{minipage}[l]{0.45\textwidth}
+			\textbf{Learning in the \textcolor{loop1}{1st CBGT-Loop}:}\\
+			Figure 4 shows the development of the connection strengths via matrix multiplication between the corticostriatal and striatalpallidal weights.			
+			\begin{itemize}[itemsep=-1pt, topsep=2pt]
 				\item The indirect pathway prevents false representations from becoming active in VA.  
 				\item The direct pathway leads to the activation of a specific neuron in VA. 
 				\item In this process, connections to similar arm positions are also learned.
@@ -219,9 +225,9 @@
 		\hfill
 		\begin{minipage}[r]{0.55\textwidth}
 			\begin{flushright}
-				\raggedleft
-				\includegraphics[width=\linewidth]{BG_Learning}
-				\captionof{figure}{Weight changes in the 1. BG-Loop}
+				\centering
+				\includegraphics[width=.8\linewidth]{BG_Learning_resize}
+				\captionof{figure}{Weight changes in the different pathways.}
 			\end{flushright}
 			
 		\end{minipage}
@@ -229,19 +235,22 @@
 
 }
 
-\headerbox{\large Learning motor skills through motor babbling}{name=motor, column=3, below=plastic, above=refs , span=3}{
+\headerbox{\large Learning motor skills}{name=motor, column=3, below=plastic, above=refs , span=3}{
 
 	\begin{adjustbox}{minipage=0.95\textwidth, margin=5pt, center}
 				
 		\begin{multicols}{2}
+			\textbf{Learning in the \textcolor{loop2}{2nd CBGT-Loop}:}\\
 			\justifying
-			The visual goal represents the desired hand position. If the corresponding signal in the Premotor Area doesn't trigger a strong enough firing rate in M1, then a random action is preformed by setting the firing rate of one random M1 neuron to 1.0. \\
-			Therefore the dorsolateral CBGT-Loop learns to map the reached position with the activated action.
+			This loop learns to map the reached position with the activated action in M1 \parencite{baladronContributionBasalGanglia2023b}.\\
+			The visual goal (see figure 5 \textcolor{red}{red}) represents the desired hand position and drives D1 neurons. \\
+			If the corresponding signal in the Premotor Area doesn't trigger a strong enough firing rate in M1 respectively in the striatum, then a random action is preformed by setting the firing rate of one random M1 neuron to 1.0
+			(learning through \textit{motor babbling}).
 		\end{multicols}
 		
 		\centering
-		\includegraphics[width=0.97\linewidth]{trajectories}
-		\captionof{figure}{Possible Trajectories}
+		\includegraphics[width=\linewidth]{trajectories}
+		\captionof{figure}{Possible trajectories.}
 		
 	\end{adjustbox}
 
